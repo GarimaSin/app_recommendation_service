@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "realtime-platform.fullname" . }}-flink-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: flink-job
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        command: ["python","/opt/flink/jobs/feature_aggregator.py"]
+      restartPolicy: OnFailure

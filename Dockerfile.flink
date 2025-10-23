@@ -1,0 +1,7 @@
+# Multi-stage Dockerfile for PyFlink job
+FROM apache/flink:1.16.0-scala_2.12-java11 AS base
+# Use Python support in Flink image; copy job files
+USER root
+WORKDIR /opt/flink/jobs
+COPY processing/flink /opt/flink/jobs
+# Note: This image uses Flink's python env. In production, build a custom image based on flink that installs requirements.

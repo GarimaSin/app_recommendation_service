@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "realtime-platform.fullname" . }}-feast
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: feast
+  template:
+    metadata:
+      labels:
+        app: feast
+    spec:
+      containers:
+      - name: feast
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        command: ["bash","-c","sleep infinity"]
+        env:
+        - name: REDIS_URL
+          value: redis://{{ .Values.redis.host }}:6379/0

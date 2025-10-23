@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "realtime-platform.fullname" . }}-producer
+spec:
+  replicas: {{ .Values.replicaCount.producer }}
+  selector:
+    matchLabels:
+      app: producer
+  template:
+    metadata:
+      labels:
+        app: producer
+    spec:
+      containers:
+      - name: producer
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: KAFKA_BOOTSTRAP
+          value: {{ .Values.kafka.bootstrap | quote }}
+        - name: REDIS_URL
+          value: redis://{{ .Values.redis.host }}:6379/0
+        ports:
+        - containerPort: 8000

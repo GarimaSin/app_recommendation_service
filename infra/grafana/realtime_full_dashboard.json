@@ -1,0 +1,43 @@
+{
+  "dashboard": {
+    "title": "Realtime Platform - Full",
+    "panels": [
+      {
+        "type": "timeseries",
+        "title": "Ingress Requests",
+        "targets": [
+          {
+            "expr": "ingest_requests_total"
+          }
+        ]
+      },
+      {
+        "type": "timeseries",
+        "title": "Kafka Produce Rate",
+        "targets": [
+          {
+            "expr": "kafka_produce_rate"
+          }
+        ]
+      },
+      {
+        "type": "timeseries",
+        "title": "ClickHouse Insert Rate",
+        "targets": [
+          {
+            "expr": "clickhouse_insert_rate"
+          }
+        ]
+      },
+      {
+        "type": "timeseries",
+        "title": "Feature Write Rate (Flink)",
+        "targets": [
+          {
+            "expr": "flink_feature_write_rate"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "realtime-platform.fullname" . }}-consumer
+spec:
+  replicas: {{ .Values.replicaCount.consumer }}
+  selector:
+    matchLabels:
+      app: consumer
+  template:
+    metadata:
+      labels:
+        app: consumer
+    spec:
+      containers:
+      - name: consumer
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        args: ["python", "-u", "app/processing/run_consumer.py"]
+        env:
+        - name: KAFKA_BOOTSTRAP
+          value: {{ .Values.kafka.bootstrap | quote }}
+        - name: CLICKHOUSE_HOST
+          value: {{ .Values.clickhouse.host | quote }}

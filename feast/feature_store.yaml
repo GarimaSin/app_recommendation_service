@@ -1,0 +1,6 @@
+project: realtime_rec
+registry: data/registry.db
+provider: local
+online_store:
+  type: redis
+  connection_string: redis://redis:6379/0

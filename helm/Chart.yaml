@@ -1,0 +1,6 @@
+apiVersion: v2
+name: realtime-platform
+description: Helm chart for Real-Time Recommendation Platform
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

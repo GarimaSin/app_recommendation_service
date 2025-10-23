@@ -1,0 +1,15 @@
+replicaCount:
+  producer: 3
+  consumer: 4
+  flinkJobManager: 1
+image:
+  repository: myregistry/realtime
+  tag: latest
+kafka:
+  bootstrap: kafka:9092
+redis:
+  host: redis
+clickhouse:
+  host: clickhouse
+feast:
+  enabled: true
